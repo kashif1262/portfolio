@@ -12,7 +12,7 @@ import glassesimoji from "../../img/glassesimoji.png";
 import FloatingDiv from "../FloaringDiv/FloatingDiv";
 const Intro = () => {
   return (
-    <div className="intro">
+    <div className="intro" id="intro">
       <div className="i-left">
         <div className="i-name">
           <span>hi! I Am</span>
@@ -39,10 +39,17 @@ const Intro = () => {
         <img src={vector1} alt="" />
         <img src={vector2} alt="" />
         <img src={boy} alt="" />
-        <div>
-          <FloatingDiv image={crown} txt1="web" txt2="development" />
+        <img src={glassesimoji} alt="" />
+        <div className="" style={{ top: "-4%", left: "68%" }}>
+          <FloatingDiv image={crown} txt1="web" txt2="developer" />
+
           {/* <FloatingDiv  /> */}
         </div>
+        <div style={{ top: "18rem", left: "0rem" }}>
+          <FloatingDiv image={thumbup} txt1="best design" txt2={"award"} />
+        </div>
+        {/* blur divs */}
+        <div className="blur" style={{ bsckground: "rgb(238,)" }}></div>
       </div>
     </div>
   );
