@@ -49,7 +49,17 @@ const Intro = () => {
           <FloatingDiv image={thumbup} txt1="best design" txt2={"award"} />
         </div>
         {/* blur divs */}
-        <div className="blur" style={{ bsckground: "rgb(238,)" }}></div>
+        <div className="blur" style={{ background: "rgb(238 210 255)" }}></div>
+        <div
+          className="blur"
+          style={{
+            background: "#c1f5ff",
+            top: "17rem",
+            width: "21rem",
+            height: "11rem",
+            left: "-9rem",
+          }}
+        ></div>
       </div>
     </div>
   );
