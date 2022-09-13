@@ -42,13 +42,13 @@
 }
 
 .s-blur1{
-    left: 13rem;
+    top: 13rem;
     left:-18rem;
 }
 
 .s-blur2{
     left: 14rem;
-    left: 8rem;
+    top: 8rem;
 }
 .cards{
     position: relative;
