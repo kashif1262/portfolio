@@ -34,8 +34,8 @@ const Testimonial = () => {
   return (
     <div className="t-wrapper" id="testimonial">
       <div className="t-heading">
-        <span>client always get</span>
-        <span> exceptional work </span>
+        <span>Clients always get </span>
+        <span>Exceptional Work </span>
         <span>from me...</span>
         <div
           className="blur t-blur1"
@@ -43,11 +43,12 @@ const Testimonial = () => {
         ></div>
         <div className="blur t-blur2" style={{ background: "skyblue" }}></div>
       </div>
-      {/* slider */}
       <Swiper
+        // install Swiper modules
         modules={[Pagination]}
         slidesPerView={1}
-        Pagination={{ clickable: true }}
+        navigation
+        pagination={{ clickable: true }}
       >
         {clients.map((client, index) => {
           return (
