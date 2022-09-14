@@ -11,10 +11,10 @@ const Services = () => {
       <div className="awesome">
         <span style={{}}>My Awesome</span>
         <span>Services</span>
-        <spane>
+        <span>
           Lorem, ipsum dolor sit amet consectetur adipisicing elit. <br />
           Iure omnis delectus exercitationem quo culpa iste.
-        </spane>
+        </span>
         <button className="button s-button">download cv</button>
         <div className="blur s-blur1"></div>
       </div>
