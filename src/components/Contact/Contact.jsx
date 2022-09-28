@@ -4,6 +4,10 @@ import emailjs from "@emailjs/browser";
 import { themeContext } from "../../Context";
 
 const Contact = () => {
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [massage, setMassage] = useState("");
+
   const theme = useContext(themeContext);
   const darkMode = theme.state.darkMode;
   const form = useRef();
@@ -28,6 +32,9 @@ const Contact = () => {
           console.log(error.text);
         }
       );
+    setUsername("");
+    setEmail("");
+    setMassage("");
   };
 
   return (
@@ -52,14 +59,24 @@ const Contact = () => {
             name="user_name"
             className="user"
             placeholder="Name"
+            onChange={(e) => setUsername(e.target.value)}
+            value={username}
           />
           <input
             type="email"
             name="user_email"
             className="user"
             placeholder="Email"
+            onChange={(e) => setEmail(e.target.value)}
+            value={email}
           />
-          <textarea name="message" className="user" placeholder="Message" />
+          <textarea
+            name="message"
+            onChange={(e) => setMassage(e.target.value)}
+            value={massage}
+            className="user"
+            placeholder="Message"
+          />
           <input type="submit" value="Send" className="button" />
           <span>{done && "Thanks for Contacting me"}</span>
           <div
