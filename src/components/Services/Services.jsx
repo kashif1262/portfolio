@@ -26,11 +26,13 @@ const Services = () => {
         {/* dark mode */}
         <span style={{ color: darkMode ? "white" : "" }}>My Awesome</span>
         <span>services</span>
-        <spane>
-          Lorem ispum is simpley dummy text of printing of printing Lorem
+        <span>
+          If you want to convert your PSD, XD, AI, Zeplin, Sketch, PNG or JPG
           <br />
-          ispum is simpley dummy text of printing
-        </spane>
+          file into responsive website you are at right place and we can discuss
+          <br />
+          the work and proceed.
+        </span>
         <a href={Resume} download>
           <button className="button s-button">Download CV</button>
         </a>

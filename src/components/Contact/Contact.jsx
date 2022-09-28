@@ -1,45 +1,78 @@
-import React, { useContext, useRef, useState } from "react";
+import React, { useContext, useRef, useState, useEffect } from "react";
 import "./Contact.css";
 import emailjs from "@emailjs/browser";
 import { themeContext } from "../../Context";
 
 const Contact = () => {
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [message, setmessage] = useState("");
-
   const theme = useContext(themeContext);
   const darkMode = theme.state.darkMode;
   const form = useRef();
-  const [done, setDone] = useState(false);
-  const sendEmail = (e) => {
-    e.preventDefault();
+  const initialValues = { username: "", email: "", message: "" };
+  const [formValues, setFormValues] = useState(initialValues);
+  const [formErrors, setFormErrors] = useState({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-    if (username !== "" && email !== "" && message !== "") {
-      emailjs
-        .sendForm(
-          "service_w1dgs9b",
-          "template_y2a6run",
-          form.current,
-          "eMFykOuqGlVSV7BiV"
-        )
-        .then(
-          (result) => {
-            console.log(result.text);
-            setDone(true);
-            form.reset();
-          },
-          (error) => {
-            console.log(error.text);
-          }
-        );
-    } else {
-      alert("username, email and message are not empty");
-    }
-    setUsername("");
-    setEmail("");
-    setmessage("");
+  const submitForm = () => {
+    //console.log(formValues);
+    emailjs
+      .sendForm(
+        "service_w1dgs9b",
+        "template_y2a6run",
+        form.current,
+        "eMFykOuqGlVSV7BiV"
+      )
+      .then(
+        (result) => {
+          console.log(result.text);
+          setFormValues(initialValues);
+        },
+        (error) => {
+          console.log(error.text);
+        }
+      );
   };
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormValues({ ...formValues, [name]: value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setFormErrors(validate(formValues));
+    setIsSubmitting(true);
+  };
+
+  const validate = (values) => {
+    let errors = {};
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
+    if (!values.username) {
+      errors.username = "cannot be black";
+    } else if (values.username.length > 150) {
+      errors.username = "user name length is not more than 150 charaters";
+    }
+
+    if (!values.email) {
+      errors.email = "cannot be black";
+    } else if (!regex.test(values.email)) {
+      errors.email = "invalid email format";
+    }
+    if (!values.message) {
+      errors.message = "cannot be black";
+    } else if (values.message.length > 1000) {
+      errors.message = "message length is not more than 1000 charaters";
+    }
+
+    return errors;
+  };
+
+  useEffect(() => {
+    if (Object.keys(formErrors).length === 0 && isSubmitting) {
+      submitForm();
+    }
+    return () => {
+      setIsSubmitting(false);
+    };
+  }, [formErrors, isSubmitting]);
 
   return (
     <div className="contact-form" id="contact">
@@ -57,32 +90,75 @@ const Contact = () => {
       </div>
       {/* right side form */}
       <div className="c-right">
-        <form ref={form} onSubmit={sendEmail}>
-          <input
-            type="text"
-            name="user_name"
-            className="user"
-            placeholder="Name"
-            onChange={(e) => setUsername(e.target.value)}
-            value={username}
-          />
-          <input
-            type="email"
-            name="user_email"
-            className="user"
-            placeholder="Email"
-            onChange={(e) => setEmail(e.target.value)}
-            value={email}
-          />
-          <textarea
-            name="message"
-            onChange={(e) => setmessage(e.target.value)}
-            value={message}
-            className="user"
-            placeholder="Message"
-          />
+        <form
+          ref={form}
+          id="form"
+          name="form"
+          onSubmit={handleSubmit}
+          noValidate
+        >
+          <div
+            className=""
+            style={{ display: "flex", flexDirection: "column" }}
+          >
+            <input
+              type="text"
+              name="username"
+              id="username"
+              placeholder="Name"
+              onChange={handleChange}
+              value={formValues.username}
+              className={(formErrors.username && "error user") || "user"}
+            />
+            {formErrors.email && (
+              <span className="" style={{ color: "red" }}>
+                {formErrors.username}
+              </span>
+            )}
+          </div>
+          <div
+            className=""
+            style={{ display: "flex", flexDirection: "column" }}
+          >
+            <input
+              type="email"
+              name="email"
+              id="email"
+              className={(formErrors.email && "error user") || "user"}
+              placeholder="Email"
+              onChange={handleChange}
+              value={formValues.email}
+            />
+            {formErrors.email && (
+              <span className="" style={{ color: "red" }}>
+                {formErrors.email}
+              </span>
+            )}
+          </div>
+          <div
+            className=""
+            style={{ display: "flex", flexDirection: "column" }}
+          >
+            <textarea
+              name="message"
+              id="message"
+              onChange={handleChange}
+              value={formValues.message}
+              className={(formErrors.message && "error user") || "user"}
+              placeholder="Message"
+            />
+            {formErrors.email && (
+              <span className="" style={{ color: "red" }}>
+                {formErrors.message}
+              </span>
+            )}
+          </div>
           <input type="submit" value="Send" className="button" />
-          <span>{done && "Thanks for Contacting me"}</span>
+          <div>
+            {Object.keys(formErrors).length === 0 && (
+              <span className="success-msg">Thanks for Contacting me</span>
+            )}
+          </div>
           <div
             className="blur c-blur1"
             style={{ background: "var(--purple)" }}
