@@ -6,7 +6,7 @@ import { themeContext } from "../../Context";
 const Contact = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
-  const [massage, setMassage] = useState("");
+  const [message, setmessage] = useState("");
 
   const theme = useContext(themeContext);
   const darkMode = theme.state.darkMode;
@@ -15,26 +15,30 @@ const Contact = () => {
   const sendEmail = (e) => {
     e.preventDefault();
 
-    emailjs
-      .sendForm(
-        "service_w1dgs9b",
-        "template_y2a6run",
-        form.current,
-        "eMFykOuqGlVSV7BiV"
-      )
-      .then(
-        (result) => {
-          console.log(result.text);
-          setDone(true);
-          form.reset();
-        },
-        (error) => {
-          console.log(error.text);
-        }
-      );
+    if (username !== "" && email !== "" && message !== "") {
+      emailjs
+        .sendForm(
+          "service_w1dgs9b",
+          "template_y2a6run",
+          form.current,
+          "eMFykOuqGlVSV7BiV"
+        )
+        .then(
+          (result) => {
+            console.log(result.text);
+            setDone(true);
+            form.reset();
+          },
+          (error) => {
+            console.log(error.text);
+          }
+        );
+    } else {
+      alert("username, email and message are not empty");
+    }
     setUsername("");
     setEmail("");
-    setMassage("");
+    setmessage("");
   };
 
   return (
@@ -72,8 +76,8 @@ const Contact = () => {
           />
           <textarea
             name="message"
-            onChange={(e) => setMassage(e.target.value)}
-            value={massage}
+            onChange={(e) => setmessage(e.target.value)}
+            value={message}
             className="user"
             placeholder="Message"
           />
