@@ -28,7 +28,7 @@ const Intro = () => {
         <div className="i-name">
           {/* yahan change hy darkmode ka */}
           <span style={{ color: darkMode ? "white" : "" }}>Hy! I Am</span>
-          <span>Andrew Thomas</span>
+          <span>M Kashif Iqbal</span>
           <span>
             Frontend Developer with high level of experience in web designing
             and development, producting the Quality work
@@ -39,9 +39,15 @@ const Intro = () => {
         </Link>
         {/* social icons */}
         <div className="i-icons">
-          <img src={Github} alt="" />
-          <img src={LinkedIn} alt="" />
-          <img src={Instagram} alt="" />
+          <a href="https://github.com/kashif1262">
+            <img src={Github} alt="" />
+          </a>
+          <a href="https://www.linkedin.com/in/muhammad-kashif-iqbal-a89a60b6/">
+            <img src={LinkedIn} alt="" />
+          </a>
+          {/* <a href="https://www.fiverr.com/kashif1262">
+            <img src={Instagram} alt="" />
+          </a> */}
         </div>
       </div>
       {/* right image side */}
@@ -64,7 +70,7 @@ const Intro = () => {
           transition={transition}
           className="floating-div"
         >
-          <FloatinDiv img={crown} text1="Web" text2="Developer" />
+          <FloatinDiv img={crown} text1="Reactjs" text2="Developer" />
         </motion.div>
 
         {/* animation */}
