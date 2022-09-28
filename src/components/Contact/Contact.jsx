@@ -69,9 +69,6 @@ const Contact = () => {
     if (Object.keys(formErrors).length === 0 && isSubmitting) {
       submitForm();
     }
-    return () => {
-      setFormValues(initialValues);
-    };
   }, [formErrors, isSubmitting]);
 
   return (
