@@ -70,7 +70,7 @@ const Contact = () => {
       submitForm();
     }
     return () => {
-      setIsSubmitting(false);
+      setFormValues(initialValues);
     };
   }, [formErrors, isSubmitting]);
 
@@ -155,7 +155,7 @@ const Contact = () => {
           </div>
           <input type="submit" value="Send" className="button" />
           <div>
-            {Object.keys(formErrors).length === 0 && (
+            {Object.keys(formErrors).length === 0 && isSubmitting && (
               <span className="success-msg">Thanks for Contacting me</span>
             )}
           </div>
