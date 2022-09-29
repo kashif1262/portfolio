@@ -2,7 +2,7 @@
   padding: 0 3rem 0 3rem;
   display: flex;
   height: 90vh;
-  margin-top: 4rem;
+  margin-top: 2rem;
 
   /* scroll */
   align-items: center;
@@ -123,14 +123,13 @@
   .w-right {
     display: flex;
     align-items: flex-start;
-    justify-content:start;
+    justify-content: start;
     transform: scale(0.7);
   }
-  .w-mainCircle{
+  .w-mainCircle {
     position: static;
   }
-  .w-backCircle{
-    left: 8rem!important;
+  .w-backCircle {
+    left: 8rem !important;
   }
-
 }

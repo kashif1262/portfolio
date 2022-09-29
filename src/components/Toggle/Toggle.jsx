@@ -12,7 +12,7 @@ const Toggle = () => {
     theme.dispatch({ type: "toggle" });
   };
   return (
-    <div className="toggle" onClick={handleClick}>
+    <div className="toggle mr-1" onClick={handleClick}>
       <Moon />
       <Sun />
       {/*                              toggle.css mein left ki property aik assign hy ussy delete

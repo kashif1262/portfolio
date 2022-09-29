@@ -2,7 +2,7 @@
   padding: 0 3rem 0 3rem;
   display: flex;
   height: 80vh;
-  margin-top: 4rem;
+  margin-top: 2rem;
   /* scroll */
   padding-top: 3rem;
 }
@@ -42,6 +42,9 @@ textarea {
 .c-blur1 {
   top: 1rem;
   left: 8rem;
+}
+button:disabled {
+  background-color: gray;
 }
 
 @media screen and (max-width: 480px) {

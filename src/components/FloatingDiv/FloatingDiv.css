@@ -5,7 +5,7 @@
   border-radius: 17px;
   display: flex;
   align-items: center;
-  padding: 0px 28px 0px 0px;
+  padding: 0px 40px 0px 0px;
   height: 4.5rem;
 }
 .floatingDiv > img {
@@ -17,4 +17,3 @@
   /* yahan ye color add kia hy bad mein dark mode k waqt */
   color: black;
 }
-

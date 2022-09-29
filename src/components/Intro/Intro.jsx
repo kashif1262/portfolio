@@ -9,10 +9,13 @@ import crown from "../../img/crown.png";
 import FloatinDiv from "../FloatingDiv/FloatingDiv";
 import Github from "../../img/github.png";
 import LinkedIn from "../../img/linkedin.png";
-import Instagram from "../../img/instagram.png";
+//import Instagram from "../../img/instagram.png";
 import { themeContext } from "../../Context";
 import { motion } from "framer-motion";
 import { Link } from "react-scroll";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { solid, regular } from "@fortawesome/fontawesome-svg-core/import.macro"; // <-- import styles to be used
+
 const Intro = () => {
   // Transition
   const transition = { duration: 2, type: "spring" };
@@ -35,8 +38,11 @@ const Intro = () => {
           </span>
         </div>
         <Link to="contact" smooth={true} spy={true}>
-          <button className="button i-button">Hire me</button>
+          <button className="text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800">
+            Hire me
+          </button>
         </Link>
+
         {/* social icons */}
         <div className="i-icons">
           <a href="https://github.com/kashif1262">
@@ -66,7 +72,7 @@ const Intro = () => {
 
         <motion.div
           initial={{ top: "-4%", left: "74%" }}
-          whileInView={{ left: "68%" }}
+          whileInView={{ left: "62%" }}
           transition={transition}
           className="floating-div"
         >
@@ -84,9 +90,9 @@ const Intro = () => {
           <FloatinDiv img={thumbup} text1="Best Design" text2="Award" />
         </motion.div>
 
-        <div className="blur" style={{ background: "rgb(238 210 255)" }}></div>
+        <div className="blur1" style={{ background: "rgb(238 210 255)" }}></div>
         <div
-          className="blur"
+          className="blur1"
           style={{
             background: "#C1F5FF",
             top: "17rem",

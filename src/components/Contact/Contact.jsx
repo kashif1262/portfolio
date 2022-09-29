@@ -1,75 +1,59 @@
-import React, { useContext, useRef, useState, useEffect } from "react";
+import React, { useContext, useRef } from "react";
+import { useFormik } from "formik";
+import { contactSchema } from "../../schemas";
 import "./Contact.css";
 import emailjs from "@emailjs/browser";
 import { themeContext } from "../../Context";
 
+const onSubmit = async (values, actions) => {
+  //console.log(values);
+  //console.log(actions);
+  let templateParams = {
+    name: values.name,
+    email: values.email,
+    message: values.message,
+  };
+  //await new Promise((resolve) => setTimeout(resolve, 100));
+  emailjs
+    .send(
+      "service_w1dgs9b",
+      "template_y2a6run",
+      templateParams,
+      "eMFykOuqGlVSV7BiV"
+    )
+    .then(
+      function (response) {
+        console.log("SUCCESS!", response.status, response.text);
+        actions.resetForm();
+      },
+      function (error) {
+        console.log("FAILED...", error);
+      }
+    );
+};
+
 const Contact = () => {
   const theme = useContext(themeContext);
   const darkMode = theme.state.darkMode;
-  const form = useRef();
-  const initialValues = { username: "", email: "", message: "" };
-  const [formValues, setFormValues] = useState(initialValues);
-  const [formErrors, setFormErrors] = useState({});
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
-  const submitForm = () => {
-    //console.log(formValues);
-    emailjs
-      .sendForm(
-        "service_w1dgs9b",
-        "template_y2a6run",
-        form.current,
-        "eMFykOuqGlVSV7BiV"
-      )
-      .then(
-        (result) => {
-          console.log(result.text);
-          setFormValues(initialValues);
-        },
-        (error) => {
-          console.log(error.text);
-        }
-      );
-  };
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormValues({ ...formValues, [name]: value });
+  const initialValues = {
+    name: "",
+    email: "",
+    message: "",
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setFormErrors(validate(formValues));
-    setIsSubmitting(true);
-  };
-
-  const validate = (values) => {
-    let errors = {};
-    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
-    if (!values.username) {
-      errors.username = "cannot be black";
-    } else if (values.username.length > 150) {
-      errors.username = "user name length is not more than 150 charaters";
-    }
-
-    if (!values.email) {
-      errors.email = "cannot be black";
-    } else if (!regex.test(values.email)) {
-      errors.email = "invalid email format";
-    }
-    if (!values.message) {
-      errors.message = "cannot be black";
-    } else if (values.message.length > 1000) {
-      errors.message = "message length is not more than 1000 charaters";
-    }
-
-    return errors;
-  };
-
-  useEffect(() => {
-    if (Object.keys(formErrors).length === 0 && isSubmitting) {
-      submitForm();
-    }
-  }, [formErrors, isSubmitting]);
+  const {
+    values,
+    errors,
+    touched,
+    isSubmitting,
+    handleBlur,
+    handleChange,
+    handleSubmit,
+  } = useFormik({
+    initialValues,
+    validationSchema: contactSchema,
+    onSubmit,
+  });
 
   return (
     <div className="contact-form" id="contact">
@@ -87,30 +71,23 @@ const Contact = () => {
       </div>
       {/* right side form */}
       <div className="c-right">
-        <form
-          ref={form}
-          id="form"
-          name="form"
-          onSubmit={handleSubmit}
-          noValidate
-        >
+        <form id="form" name="form" onSubmit={handleSubmit} noValidate>
           <div
             className=""
             style={{ display: "flex", flexDirection: "column" }}
           >
             <input
+              value={values.name}
               type="text"
-              name="username"
-              id="username"
+              name="name"
+              id="name"
               placeholder="Name"
+              className={errors.name && touched.name ? "error user" : "user"}
               onChange={handleChange}
-              value={formValues.username}
-              className={(formErrors.username && "error user") || "user"}
+              onBlur={handleBlur}
             />
-            {formErrors.email && (
-              <span className="" style={{ color: "red" }}>
-                {formErrors.username}
-              </span>
+            {errors.name && touched.name && (
+              <span style={{ color: "red" }}>{errors.name}</span>
             )}
           </div>
           <div
@@ -121,15 +98,14 @@ const Contact = () => {
               type="email"
               name="email"
               id="email"
-              className={(formErrors.email && "error user") || "user"}
+              className={errors.email && touched.email ? "error user" : "user"}
               placeholder="Email"
               onChange={handleChange}
-              value={formValues.email}
+              onBlur={handleBlur}
+              value={values.email}
             />
-            {formErrors.email && (
-              <span className="" style={{ color: "red" }}>
-                {formErrors.email}
-              </span>
+            {errors.email && touched.email && (
+              <span style={{ color: "red" }}>{errors.email}</span>
             )}
           </div>
           <div
@@ -139,23 +115,26 @@ const Contact = () => {
             <textarea
               name="message"
               id="message"
-              onChange={handleChange}
-              value={formValues.message}
-              className={(formErrors.message && "error user") || "user"}
+              className={
+                errors.message && touched.message ? "error user" : "user"
+              }
               placeholder="Message"
+              onChange={handleChange}
+              onBlur={handleBlur}
+              value={values.message}
             />
-            {formErrors.email && (
-              <span className="" style={{ color: "red" }}>
-                {formErrors.message}
-              </span>
+            {errors.message && touched.message && (
+              <span style={{ color: "red" }}>{errors.message}</span>
             )}
           </div>
-          <input type="submit" value="Send" className="button" />
-          <div>
-            {Object.keys(formErrors).length === 0 && isSubmitting && (
-              <span className="success-msg">Thanks for Contacting me</span>
-            )}
-          </div>
+          <button
+            type="submit"
+            disabled={isSubmitting}
+            value="Send"
+            className="text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none dark:focus:ring-primary-800"
+          >
+            Send
+          </button>
           <div
             className="blur c-blur1"
             style={{ background: "var(--purple)" }}
