@@ -1,8 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import Toggle from "../Toggle/Toggle";
 import "./Navbar.css";
 import { Link } from "react-scroll";
-const navbar = () => {
+const Navbar = () => {
+  const [smheader, setSmheader] = useState("hidden");
+  const handleClick = () => {
+    if (smheader === "hidden") {
+      setSmheader("block");
+    } else {
+      setSmheader("hidden");
+    }
+  };
+  const handleMenuClick = () => {
+    setSmheader("hidden");
+  };
   return (
     <header id="Navbar">
       <nav className=" border-gray-200 dark:bg-gray-800">
@@ -31,6 +42,7 @@ const navbar = () => {
             <button
               data-collapse-toggle="mobile-menu-2"
               type="button"
+              onClick={handleClick}
               className="inline-flex items-center p-2 ml-1 text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
               aria-controls="mobile-menu-2"
               aria-expanded="false"
@@ -43,9 +55,9 @@ const navbar = () => {
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  fill-rule="evenodd"
+                  fillRule="evenodd"
                   d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
-                  clip-rule="evenodd"
+                  clipRule="evenodd"
                 ></path>
               </svg>
               <svg
@@ -63,7 +75,7 @@ const navbar = () => {
             </button>
           </div>
           <div
-            className="hidden justify-between items-center w-full lg:flex lg:w-auto lg:order-1"
+            className={`${smheader} justify-between items-center w-full lg:flex lg:w-auto lg:order-1`}
             id="mobile-menu-2"
           >
             <ul className="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">
@@ -74,6 +86,7 @@ const navbar = () => {
                   to="Navbar"
                   spy={true}
                   smooth={true}
+                  onClick={handleMenuClick}
                 >
                   Home
                 </Link>
@@ -83,6 +96,7 @@ const navbar = () => {
                   to="services"
                   spy={true}
                   smooth={true}
+                  onClick={handleMenuClick}
                   className="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
                 >
                   Services
@@ -93,6 +107,7 @@ const navbar = () => {
                   to="works"
                   spy={true}
                   smooth={true}
+                  onClick={handleMenuClick}
                   className="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
                 >
                   Experience
@@ -103,6 +118,7 @@ const navbar = () => {
                   to="portfolio"
                   spy={true}
                   smooth={true}
+                  onClick={handleMenuClick}
                   className="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
                 >
                   Protfolio
@@ -113,6 +129,7 @@ const navbar = () => {
                   to="testimonial"
                   spy={true}
                   smooth={true}
+                  onClick={handleMenuClick}
                   className="block py-2 pr-4 pl-3 text-gray-700 border-b border-gray-100 hover:bg-gray-50 lg:hover:bg-transparent lg:border-0 lg:hover:text-primary-700 lg:p-0 dark:text-gray-400 lg:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white lg:dark:hover:bg-transparent dark:border-gray-700"
                 >
                   Testimonial
@@ -126,4 +143,4 @@ const navbar = () => {
   );
 };
 
-export default navbar;
+export default Navbar;

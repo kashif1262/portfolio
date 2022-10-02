@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.72545c6f.css",
-    "main.js": "/static/js/main.aba4ffb1.js",
+    "main.js": "/static/js/main.3b2e3f23.js",
     "static/media/CV-Muhammad-kashif-iqbal.pdf": "/static/media/CV-Muhammad-kashif-iqbal.e66a49125e0a02e2e69b.pdf",
     "static/media/ecommerce.png": "/static/media/ecommerce.522da76635d52117102b.png",
     "static/media/sidebar.png": "/static/media/sidebar.b2225070b8adae68d063.png",
@@ -18,10 +18,10 @@
     "static/media/wave2.png": "/static/media/wave2.46f6cb531094af357458.png",
     "index.html": "/index.html",
     "main.72545c6f.css.map": "/static/css/main.72545c6f.css.map",
-    "main.aba4ffb1.js.map": "/static/js/main.aba4ffb1.js.map"
+    "main.3b2e3f23.js.map": "/static/js/main.3b2e3f23.js.map"
   },
   "entrypoints": [
     "static/css/main.72545c6f.css",
-    "static/js/main.aba4ffb1.js"
+    "static/js/main.3b2e3f23.js"
   ]
 }
