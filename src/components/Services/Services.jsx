@@ -68,7 +68,7 @@ const Services = () => {
         </motion.div>
         {/* 3rd */}
         <motion.div
-          initial={{ top: "19rem", left: "25rem" }}
+          initial={{ top: "20rem", left: "25rem" }}
           whileInView={{ left: "12rem" }}
           transition={transition}
         >
