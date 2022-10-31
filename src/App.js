@@ -25,8 +25,16 @@ function App() {
       <Intro />
       <Services />
       <Experience />
-      <Works />
+      {/* <Works /> */}
+
       <Portfolio />
+
+      {/* <Router>
+        <Routes>
+          <Route path="/" element={<App />} />
+          <Route path="/project1" element={<Project1 />} />
+        </Routes>
+      </Router> */}
       <Testimonial />
       <Contact />
       <Footer />

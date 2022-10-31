@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
 import "./Portfolio.css";
-import { Swiper, SwiperSlide } from "swiper/react"
+import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import Sidebar from "../../img/sidebar.png";
-import Ecommerce from "../../img/ecommerce.png";
+import AllEvents from "../../img/all-events.PNG";
 import HOC from "../../img/hoc.png";
 import MusicApp from "../../img/musicapp.png";
 import { themeContext } from "../../Context";
@@ -13,7 +13,7 @@ const Portfolio = () => {
   return (
     <div className="portfolio" id="portfolio">
       {/* heading */}
-      <span style={{color: darkMode?'white': ''}}>Recent Projects</span>
+      <span style={{ color: darkMode ? "white" : "" }}>Recent Projects</span>
       <span>Portfolio</span>
 
       {/* slider */}
@@ -22,18 +22,27 @@ const Portfolio = () => {
         slidesPerView={3}
         grabCursor={true}
         className="portfolio-slider"
+        style={{ display: "flex", justifyContent: "center" }}
       >
-        <SwiperSlide>
-          <img src={Sidebar} alt="" />
+        <SwiperSlide className="flex flex-col gap-2">
+          <a href="">
+            <h2 className="text-center">DashBoard</h2>
+          </a>
+          <a href="">
+            <img src={Sidebar} alt="" />
+          </a>
         </SwiperSlide>
-        <SwiperSlide>
-          <img src={Ecommerce} alt="" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src={MusicApp} alt="" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src={HOC} alt="" />
+        <SwiperSlide className="flex flex-col gap-2">
+          <a href="https://all-events.netlify.app/">
+            <h2 className="text-center">Events Managements</h2>
+          </a>
+          <a href="https://all-events.netlify.app/">
+            <img
+              src={AllEvents}
+              alt="Events Managements"
+              style={{ height: "117%" }}
+            />
+          </a>
         </SwiperSlide>
       </Swiper>
     </div>

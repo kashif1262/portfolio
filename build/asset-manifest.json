@@ -1,9 +1,9 @@
 {
   "files": {
-    "main.css": "/static/css/main.99b78cc4.css",
-    "main.js": "/static/js/main.5189e138.js",
+    "main.css": "/static/css/main.e432a3c6.css",
+    "main.js": "/static/js/main.5b566785.js",
     "static/media/CV-Muhammad-kashif-iqbal.pdf": "/static/media/CV-Muhammad-kashif-iqbal.e66a49125e0a02e2e69b.pdf",
-    "static/media/ecommerce.png": "/static/media/ecommerce.522da76635d52117102b.png",
+    "static/media/all-events.PNG": "/static/media/all-events.6c51c814960e2a3cf005.PNG",
     "static/media/sidebar.png": "/static/media/sidebar.b2225070b8adae68d063.png",
     "static/media/musicapp.png": "/static/media/musicapp.f1c301f91904ef5f9249.png",
     "static/media/boy.png": "/static/media/boy.5ca4b670a32b71681d2c.png",
@@ -17,11 +17,11 @@
     "static/media/glasses.png": "/static/media/glasses.71d7c1b0ff0b870a9d7d.png",
     "static/media/wave2.png": "/static/media/wave2.46f6cb531094af357458.png",
     "index.html": "/index.html",
-    "main.99b78cc4.css.map": "/static/css/main.99b78cc4.css.map",
-    "main.5189e138.js.map": "/static/js/main.5189e138.js.map"
+    "main.e432a3c6.css.map": "/static/css/main.e432a3c6.css.map",
+    "main.5b566785.js.map": "/static/js/main.5b566785.js.map"
   },
   "entrypoints": [
-    "static/css/main.99b78cc4.css",
-    "static/js/main.5189e138.js"
+    "static/css/main.e432a3c6.css",
+    "static/js/main.5b566785.js"
   ]
 }
